@@ -32,6 +32,14 @@ def main(args):
 
     device = "cuda" if th.cuda.is_available() and args.cuda else "cpu"
 
+    import wandb
+    wandb.init(
+        project="MarioNette",
+        name="marionette",
+        sync_tensorboard=True,
+        config=vars(args),
+    )
+
     if args.crop:
         Dataset = datasets.RandomCropDataset
     elif args.sprites:
